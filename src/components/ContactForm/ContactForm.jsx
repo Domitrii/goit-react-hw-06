@@ -4,6 +4,7 @@ import InputMask from 'react-input-mask';
 import * as Yup from 'yup'
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
+import { addContact } from "../../redux/contactsSlice";
 
 const numberScheme = Yup.object().shape({
     name: Yup.string()
@@ -17,12 +18,12 @@ const numberScheme = Yup.object().shape({
   });
   
 
-function ContactForm({addNewNumber}) {
+  const firstVal = {
+    name: '',
+    number: ''
+  }
 
-    const firstVal = {
-        name: '',
-        number: ''
-      }
+function ContactForm() {
 
     const dispatch = useDispatch()
 
@@ -31,12 +32,16 @@ function ContactForm({addNewNumber}) {
         ...values,
         id: nanoid(),
       };
-        dispatch(addNewNumber(finalNewContact));
+        dispatch(addContact(finalNewContact));
         resetForm();
       };
 
   return (
-    <Formik initialValues={firstVal} onSubmit={handleSubmit} validationSchema={numberScheme}>
+    <Formik 
+      initialValues={firstVal}
+      onSubmit={handleSubmit}
+      validationSchema={numberScheme}
+      >
         <Form className={css.formCont}>
             <label className={css.valueBlock}>
               Name
