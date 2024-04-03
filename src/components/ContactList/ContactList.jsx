@@ -6,7 +6,7 @@ import { selectNameFilter } from "../../redux/filtersSlice"
 
 const getVisibleContacts = (contacts, filters) => {
   return contacts.filter((contact) =>
-    filters.toLowerCase().includes(contact.name.toLowerCase())
+  contact.name.toLowerCase().includes(filters.toLowerCase())
   );
 };
 
