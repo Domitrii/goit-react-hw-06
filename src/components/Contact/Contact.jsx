@@ -7,7 +7,7 @@ function Contact({numberId, numberName, number}) {
   const handleDelete = () => dispatch(deleteContact(numberId))
 
   return (
-    <li key={numberId} className={css.item}>
+    <li className={css.item}>
       <span>
         <p className="name"><b>{numberName}</b></p>
         <p className="number"><b>{number}</b></p>
